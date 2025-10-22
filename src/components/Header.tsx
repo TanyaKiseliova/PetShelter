@@ -5,25 +5,13 @@ import { useAuth } from '../contexts/AuthContext';
 const Header: React.FC = () => {
 
 
-const { user, logout, loading } = useAuth();
+const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     navigate('/');
   };
-
-  // Пока идёт загрузка — не рендерим кнопки
-  if (loading) {
-    return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div className="container">
-          <span className="navbar-brand fw-bold">PetShelter</span>
-        </div>
-      </nav>
-    );
-  }
-
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -50,6 +38,8 @@ const { user, logout, loading } = useAuth();
             <li className="nav-item">
               <Link to="/pets" className="nav-link">Животные</Link>
             </li>
+
+             
           </ul>
 
 

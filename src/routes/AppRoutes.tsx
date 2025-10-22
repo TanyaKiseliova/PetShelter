@@ -6,6 +6,8 @@ import RegisterPage from '../pages/RegisterPage';
 import LoginPage from '../pages/LoginPage';
 import Header from '../components/Header';
 import AboutPage from '../pages/AboutPage'; 
+import AddPetPage from '../pages/AddPetPage';
+import PetsPage from '../pages/PetsPage';
 
 const ProtectedRoute: React.FC<{ 
   children: React.ReactNode; 
@@ -49,22 +51,21 @@ const AppRoutes: React.FC = () => {
             path="/about" 
             element={<AboutPage />} 
           />
+
           <Route 
-            path="/inventory/:id/manage" 
+            path="/pets" 
+            element={<PetsPage />} 
+          />
+          <Route 
+            path="/add-pet" 
             element={
               <ProtectedRoute allowedRoles={['worker']}>
-                <div>Страница управления инвентаризацией (только для работников)</div>
+                <AddPetPage />
               </ProtectedRoute>
             } 
           />
-          <Route 
-            path="/inventory/:id/animals" 
-            element={
-              <ProtectedRoute allowedRoles={['worker', 'visitor']}>
-                <div>Страница животных (для посетителей и работников)</div>
-              </ProtectedRoute>
-            } 
-          />
+
+          
         </Routes>
       </div>
     </>
