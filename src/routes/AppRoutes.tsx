@@ -1,0 +1,74 @@
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import HomePage from '../pages/HomePage';
+import RegisterPage from '../pages/RegisterPage';
+import LoginPage from '../pages/LoginPage';
+import Header from '../components/Header';
+import AboutPage from '../pages/AboutPage'; 
+
+const ProtectedRoute: React.FC<{ 
+  children: React.ReactNode; 
+  allowedRoles: ('worker' | 'visitor')[] 
+}> = ({ children, allowedRoles }) => {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <div className="container text-center py-5">Загрузка...</div>;
+  }
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (!allowedRoles.includes(user.role)) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <>{children}</>;
+};
+
+const AppRoutes: React.FC = () => {
+  const { user } = useAuth();
+
+  return (
+    <>
+      <Header />
+      <div className="container py-4">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route 
+            path="/register" 
+            element={user ? <Navigate to="/" replace /> : <RegisterPage />} 
+          />
+          <Route 
+            path="/login" 
+            element={user ? <Navigate to="/" replace /> : <LoginPage />} 
+          />
+           <Route 
+            path="/about" 
+            element={<AboutPage />} 
+          />
+          <Route 
+            path="/inventory/:id/manage" 
+            element={
+              <ProtectedRoute allowedRoles={['worker']}>
+                <div>Страница управления инвентаризацией (только для работников)</div>
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/inventory/:id/animals" 
+            element={
+              <ProtectedRoute allowedRoles={['worker', 'visitor']}>
+                <div>Страница животных (для посетителей и работников)</div>
+              </ProtectedRoute>
+            } 
+          />
+        </Routes>
+      </div>
+    </>
+  );
+};
+
+export default AppRoutes;
