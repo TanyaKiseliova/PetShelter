@@ -12,7 +12,7 @@ const PetsPage: React.FC = () => {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2>Наши питомцы</h2>
         {user?.role === 'worker' && (
-          <Link to="/add-pet" className="btn btn-primary">
+          <Link to="/add-pet" className="btn btn-primary text-white">
             + Добавить питомца
           </Link>
         )}

@@ -14,7 +14,7 @@ const { user, logout } = useAuth();
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
         <Link to="/" className="navbar-brand fw-bold">PetShelter</Link>
         

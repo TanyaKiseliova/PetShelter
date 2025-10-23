@@ -14,7 +14,7 @@ const MapSection: React.FC = () => {
   return (
     <section className="py-5">
       <div className="container">
-        <h2 className="text-center mb-4">Где мы находимся</h2>
+        <h2 className="text-center mb-4 display-8 fw-bold text-primary">Где мы находимся</h2>
         <div className="row justify-content-center">
           <div className="col-lg-10">
             <div className="card shadow">

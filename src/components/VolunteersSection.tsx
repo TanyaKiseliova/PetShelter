@@ -28,7 +28,7 @@ const VolunteersSection: React.FC = () => {
   return (
     <div className="bg-light py-5">
       <div className="container">
-        <h2 className="text-center mb-4">Наша команда</h2>
+        <h2 className="text-center mb-4 display-8 fw-bold text-primary">Наша команда</h2>
         <div className="row">
           {volunteers.map((volunteer, index) => (
             <VolunteerCard 
