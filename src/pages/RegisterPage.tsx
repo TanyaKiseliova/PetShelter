@@ -114,9 +114,7 @@ const RegisterPage: React.FC = () => {
               
               <div className="mb-3">
                 <label htmlFor="confirmPassword" className="form-label">Подтвердите пароль</label>
-                <input
-                  type="password"
-                  className="form-control"
+                <input type="password" className="form-control"
                   id="confirmPassword"
                   name="confirmPassword"
                   value={formData.confirmPassword}
@@ -125,7 +123,7 @@ const RegisterPage: React.FC = () => {
                 />
               </div>
               
-              <button type="submit" className="btn btn-success w-100">
+              <button type="submit" className="btn btn-success w-100 text-light ">
                 Зарегистрироваться
               </button>
               

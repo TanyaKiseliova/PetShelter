@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import AboutPage from '../pages/AboutPage'; 
 import AddPetPage from '../pages/AddPetPage';
 import PetsPage from '../pages/PetsPage';
+import Footer from '../components/Footer';
 
 const ProtectedRoute: React.FC<{ 
   children: React.ReactNode; 
@@ -63,11 +64,11 @@ const AppRoutes: React.FC = () => {
                 <AddPetPage />
               </ProtectedRoute>
             } 
-          />
-
-          
+          />          
         </Routes>
       </div>
+
+      <Footer />
     </>
   );
 };

@@ -9,8 +9,8 @@ const PetsPage: React.FC = () => {
 
   return (
     <div className="container py-5">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2>Наши питомцы</h2>
+      <div className="d-flex justify-content-between align-items-center text-center mb-4 display-8 fw-bold text-primary">
+        <h2 >Наши питомцы</h2>
         {user?.role === 'worker' && (
           <Link to="/add-pet" className="btn btn-primary text-white">
             + Добавить питомца
