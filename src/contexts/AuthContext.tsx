@@ -1,70 +1,75 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { User } from '../types';
+
+import { auth, db } from '../lib/firebase';
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => boolean;
-  register: (userData: Omit<User, 'id' | 'createdAt'>) => boolean;
-  logout: () => void;
+  login: (email: string, password: string) => Promise<boolean>;
+  register: (userData: Omit<User, 'id' | 'createdAt'>) => Promise<boolean>;
+  logout: () => Promise<void>;
   loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const mockUsers: User[] = [
-  {
-    id: 1,
-    email: 'worker@shelter.com',
-    password: 'worker123',
-    role: 'worker',
-    name: 'Администратор',
-    createdAt: '2024-01-01'
-  }
-];
-
-export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-   useEffect(() => {
-    const savedUser = localStorage.getItem('petshelter_user');
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-    setLoading(false);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
+        if (userDoc.exists()) {
+          setUser(userDoc.data() as User);
+        }
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const login = (email: string, password: string): boolean => {
-    const foundUser = mockUsers.find(u => u.email === email && u.password === password);
-    if (foundUser) {
-      setUser(foundUser);
-      localStorage.setItem('petshelter_user', JSON.stringify(foundUser));
-      return true;
-    }
-    return false;
-  };
-
-  const register = (userData: Omit<User, 'id' | 'createdAt'>): boolean => {
-    const existingUser = mockUsers.find(u => u.email === userData.email);
-    if (existingUser) {
+  const login = async (email: string, password: string): Promise<boolean> => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userDoc = await getDoc(doc(db, 'users', userCredential.user.uid));
+      if (userDoc.exists()) {
+        setUser(userDoc.data() as User);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Login error:', error);
       return false;
     }
-
-    const newUser: User = {
-      ...userData,
-      id: mockUsers.length + 1,
-      createdAt: new Date().toISOString().split('T')[0]
-    };
-
-    mockUsers.push(newUser);
-    setUser(newUser);
-    localStorage.setItem('petshelter_user', JSON.stringify(newUser));
-    return true;
   };
 
-  const logout = () => {
+  const register = async (userData: Omit<User, 'id' | 'createdAt'>): Promise<boolean> => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+      const newUser: User = {
+        ...userData,
+        id: userCredential.user.uid,
+        createdAt: new Date().toISOString().split('T')[0]
+      };
+      await setDoc(doc(db, 'users', newUser.id), newUser);
+      setUser(newUser);
+      return true;
+    } catch (error) {
+      console.error('Register error:', error);
+      return false;
+    }
+  };
+
+  const logout = async () => {
+    await signOut(auth);
     setUser(null);
-    localStorage.removeItem('petshelter_user');
   };
 
   return (
@@ -76,7 +81,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;

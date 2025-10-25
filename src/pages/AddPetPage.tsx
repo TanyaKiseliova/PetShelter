@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Pet } from '../types';
+//import { Pet } from '../types/index';
 import { useAuth } from '../contexts/AuthContext';
+
+import { db } from '../lib/firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 const AddPetPage: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<Omit<Pet, 'id' | 'createdAt'>>({
+ const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [error, setError] = useState('');
+
+  const [formData, setFormData] = useState({
     name: '',
     species: 'dog',
     breed: '',
@@ -17,24 +23,22 @@ const AddPetPage: React.FC = () => {
     color: '',
     vaccinated: false,
     neutered: false,
-    attitudeToPeople: '',
+    // attitudeToPeople: '',
     character: '',
     features: '',
     status: 'available',
     history: '',
     arrivalDate: new Date().toISOString().split('T')[0],
-    additionalInfo: '',
+    // additionalInfo: '',
   });
 
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [error, setError] = useState('');
-
-  if (user?.role !== 'worker') {
+   if (user?.role !== 'worker') {
     navigate('/');
     return null;
   }
 
-
+ 
+ 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -59,29 +63,24 @@ const AddPetPage: React.FC = () => {
     reader.readAsDataURL(file);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
-    if (!formData.name.trim()) {
-      setError('Укажите имя питомца');
-      return;
+    try {
+      await addDoc(collection(db, 'pets'), {
+        ...formData,
+        ownerId: user.id,
+        createdAt: new Date().toISOString(),
+      });
+      alert('Питомец добавлен!');
+      navigate('/pets');
+    } catch (err) {
+      setError('Ошибка: недостаточно прав или проблема с подключением');
+      console.error(err);
     }
-
-    // в localStorage
-    const pets = JSON.parse(localStorage.getItem('pets') || '[]') as Pet[];
-    const newPet: Pet = {
-      ...formData,
-      id: `pet_${Date.now()}`,
-      createdAt: new Date().toISOString(),
-    };
-
-    localStorage.setItem('pets', JSON.stringify([...pets, newPet]));
-
-    alert('Питомец успешно добавлен!');
-    navigate('/pets');
   };
-
+  
   return (
     <div className="container py-5">
       <div className="row justify-content-center">
@@ -233,7 +232,7 @@ const AddPetPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mb-3">
+                {/* <div className="mb-3">
                   <label className="form-label">Отношение к людям</label>
                   <textarea
                     className="form-control"
@@ -242,7 +241,7 @@ const AddPetPage: React.FC = () => {
                     onChange={handleChange}
                     rows={2}
                   />
-                </div>
+                </div> */}
 
                 <div className="mb-3">
                   <label className="form-label">Характер</label>
@@ -304,7 +303,7 @@ const AddPetPage: React.FC = () => {
                 </div>
 
               
-                <div className="mb-3">
+                {/* <div className="mb-3">
                   <label className="form-label">Дополнительная информация</label>
                   <textarea
                     className="form-control"
@@ -313,7 +312,7 @@ const AddPetPage: React.FC = () => {
                     onChange={handleChange}
                     rows={3}
                   />
-                </div>
+                </div> */}
 
                 <button type="submit" className="btn btn-success w-100">
                   Добавить питомца

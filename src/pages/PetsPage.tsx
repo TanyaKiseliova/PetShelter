@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pet } from '../types';
 import { useAuth } from '../contexts/AuthContext';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../lib/firebase';
+import { collection, getDocs } from 'firebase/firestore';
+
 
 const PetsPage: React.FC = () => {
+   const [pets, setPets] = useState<Pet[]>([]);
   const { user } = useAuth();
-  const pets = JSON.parse(localStorage.getItem('pets') || '[]') as Pet[];
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    const fetchPets = async () => {
+      const querySnapshot = await getDocs(collection(db, 'pets'));
+      const petsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Pet[];
+      setPets(petsList);
+    };
+    fetchPets();
+  }, []);
 
   return (
     <div className="container py-5">
       <div className="d-flex justify-content-between align-items-center text-center mb-4 display-8 fw-bold text-primary">
         <h2 >Наши питомцы</h2>
         {user?.role === 'worker' && (
-          <Link to="/add-pet" className="btn btn-primary text-white">
-            + Добавить питомца
-          </Link>
+          <button className="btn btn-primary" onClick={() => navigate('/add-pet')}>
+            + Добавить
+          </button>
+          // <Link to="/add-pet" className="btn btn-primary text-white">
+          //   + Добавить питомца
+          // </Link>
         )}
       </div>
 

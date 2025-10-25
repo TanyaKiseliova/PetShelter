@@ -1,54 +1,50 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { RegisterFormData } from '../types';
+//import { RegisterFormData } from '../types';
 
 const RegisterPage: React.FC = () => {
-  const [formData, setFormData] = useState<RegisterFormData>({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setSuccess(false);
 
-    // Валидация
-    if (formData.password !== formData.confirmPassword) {
+    if (password !== confirmPassword) {
       setError('Пароли не совпадают');
       return;
     }
 
-    if (formData.password.length < 6) {
+    if (password.length < 6) {
       setError('Пароль должен быть не менее 6 символов');
       return;
     }
 
     const userData = {
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
+      name,
+      email,
+      password,
       role: 'visitor' as const
     };
 
-    if (register(userData)) {
+
+    const successReg = await register(userData);
+    if (successReg) {
       setSuccess(true);
       setTimeout(() => navigate('/'), 2000);
     } else {
       setError('Пользователь с таким email уже существует');
     }
+    
   };
 
   return (
@@ -79,8 +75,8 @@ const RegisterPage: React.FC = () => {
                   className="form-control"
                   id="name"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   required
                 />
               </div>
@@ -92,8 +88,9 @@ const RegisterPage: React.FC = () => {
                   className="form-control"
                   id="email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
+                  value={email}
+                   onChange={(e) => setEmail(e.target.value)}
+                  // onChange={handleChange}
                   required
                 />
               </div>
@@ -105,8 +102,9 @@ const RegisterPage: React.FC = () => {
                   className="form-control"
                   id="password"
                   name="password"
-                  value={formData.password}
-                  onChange={handleChange}
+                  value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                 // onChange={handleChange}
                   required
                   minLength={6}
                 />
@@ -117,8 +115,9 @@ const RegisterPage: React.FC = () => {
                 <input type="password" className="form-control"
                   id="confirmPassword"
                   name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  //onChange={handleChange}
                   required
                 />
               </div>

@@ -1,6 +1,6 @@
 
 export interface User {
-  id: number;
+  id: string;
   email: string;
   password: string; 
   role: 'worker' | 'visitor';
@@ -19,13 +19,13 @@ export interface Pet {
   color: string;
   vaccinated: boolean;
   neutered: boolean;
-  attitudeToPeople: string;
+  // attitudeToPeople: string;
   character: string; 
   features: string; 
   status: 'available' | 'reserved' | 'adopted'; 
   history: string; 
   arrivalDate: string; 
-  additionalInfo: string; 
+  // additionalInfo: string; 
   createdAt: string;
 }
 
