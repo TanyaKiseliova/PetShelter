@@ -10,6 +10,7 @@ import AddPetPage from '../pages/AddPetPage';
 import PetsPage from '../pages/PetsPage';
 import Footer from '../components/Footer';
 import PetDetailPage from '../pages/PetDetailPage';
+import EditPetPage from '../pages/EditPetPage';
 
 const ProtectedRoute: React.FC<{ 
   children: React.ReactNode; 
@@ -68,6 +69,13 @@ const AppRoutes: React.FC = () => {
           />   
 
           <Route path="/pet/:id" element={<PetDetailPage />} />
+
+          <Route path="/pet/:petId/edit" element={
+             <ProtectedRoute allowedRoles={['worker']}>
+                <EditPetPage />
+              </ProtectedRoute>
+            } />
+  
 
         </Routes>
       </div>

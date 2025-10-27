@@ -47,7 +47,7 @@ const PetsPage: React.FC = () => {
                     src={pet.photo}
                     alt={pet.name}
                     className="card-img-top"
-                    style={{ height: '200px', objectFit: 'cover' }}
+                    style={{ height: '300px', objectFit: 'cover' }}
                   />
                 )}
                 <div className="card-body d-flex flex-column">

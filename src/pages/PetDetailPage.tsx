@@ -1,10 +1,10 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { doc, getDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { useAuth } from '../contexts/AuthContext';
 import { Pet } from '../types'; 
-import { updateDoc, deleteDoc } from 'firebase/firestore';
+import {  deleteDoc } from 'firebase/firestore';
 
 export default function PetDetailPage() {
   const { id } = useParams<{ id: string }>();
