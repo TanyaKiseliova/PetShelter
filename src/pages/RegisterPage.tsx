@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-//import { RegisterFormData } from '../types';
 
 const RegisterPage: React.FC = () => {
 
@@ -48,7 +47,7 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-     <div className="container py-5">
+     <div className="container py-5 m-3">
     <div className="row justify-content-center">
       <div className="col-md-6">
         <div className="card shadow">
@@ -90,7 +89,6 @@ const RegisterPage: React.FC = () => {
                   name="email"
                   value={email}
                    onChange={(e) => setEmail(e.target.value)}
-                  // onChange={handleChange}
                   required
                 />
               </div>
@@ -103,8 +101,7 @@ const RegisterPage: React.FC = () => {
                   id="password"
                   name="password"
                   value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                 // onChange={handleChange}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={6}
                 />
@@ -117,7 +114,6 @@ const RegisterPage: React.FC = () => {
                   name="confirmPassword"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  //onChange={handleChange}
                   required
                 />
               </div>

@@ -6,6 +6,12 @@ import { useAuth } from '../contexts/AuthContext';
 import { db } from '../lib/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
+const storage = getStorage();
+
+
+
 const AddPetPage: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -23,13 +29,11 @@ const AddPetPage: React.FC = () => {
     color: '',
     vaccinated: false,
     neutered: false,
-    // attitudeToPeople: '',
     character: '',
     features: '',
     status: 'available',
     history: '',
     arrivalDate: new Date().toISOString().split('T')[0],
-    // additionalInfo: '',
   });
 
    if (user?.role !== 'worker') {
@@ -64,22 +68,72 @@ const AddPetPage: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
+  e.preventDefault();
+  setError('');
+
+  let imageUrl = formData.photo; // по умолчанию — если не загружаем новое фото
+
+  const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+  const file = fileInput?.files?.[0];
+
+  if (file) {
+    if (!file.type.startsWith('image/')) {
+      setError('Пожалуйста, выберите изображение');
+      return;
+    }
 
     try {
-      await addDoc(collection(db, 'pets'), {
-        ...formData,
-        ownerId: user.id,
-        createdAt: new Date().toISOString(),
-      });
-      alert('Питомец добавлен!');
-      navigate('/pets');
-    } catch (err) {
-      setError('Ошибка: недостаточно прав или проблема с подключением');
-      console.error(err);
+      // Генерируем уникальное имя файла
+      const fileName = `${Date.now()}_${file.name}`;
+      const imageRef = ref(storage, `pets/${fileName}`);
+
+      // Загружаем в Firebase Storage
+      await uploadBytes(imageRef, file);
+      
+      // Получаем публичный URL
+      imageUrl = await getDownloadURL(imageRef);
+    } catch (uploadError) {
+      setError('Не удалось загрузить изображение');
+      console.error('Upload error:', uploadError);
+      return;
     }
-  };
+  }
+
+  try {
+    await addDoc(collection(db, 'pets'), {
+      ...formData,
+      photo: imageUrl, // ← только URL, не base64!
+      ownerId: user?.id,
+      createdAt: new Date().toISOString(),
+    });
+    alert('Питомец добавлен!');
+    navigate('/pets');
+  } catch (err) {
+    setError('Ошибка при добавлении питомца');
+    console.error(err);
+  }
+};
+
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setError('');
+
+  //   try {
+  //     await addDoc(collection(db, 'pets'), {
+  //       ...formData,
+  //        photo: formData.photo,
+  //     //  photo: imageUrl, // ← URL из Storage
+  //       ownerId: user.id,
+  //       createdAt: new Date().toISOString(),
+       
+  //     });
+  //     alert('Питомец добавлен!');
+  //     navigate('/pets');
+  //   } catch (err) {
+  //     setError('Ошибка: недостаточно прав или проблема с подключением');
+  //     console.error(err);
+  //   }
+  // };
   
   return (
     <div className="container py-5">
@@ -232,17 +286,6 @@ const AddPetPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* <div className="mb-3">
-                  <label className="form-label">Отношение к людям</label>
-                  <textarea
-                    className="form-control"
-                    name="attitudeToPeople"
-                    value={formData.attitudeToPeople}
-                    onChange={handleChange}
-                    rows={2}
-                  />
-                </div> */}
-
                 <div className="mb-3">
                   <label className="form-label">Характер</label>
                   <textarea
@@ -301,18 +344,6 @@ const AddPetPage: React.FC = () => {
                     onChange={handleChange}
                   />
                 </div>
-
-              
-                {/* <div className="mb-3">
-                  <label className="form-label">Дополнительная информация</label>
-                  <textarea
-                    className="form-control"
-                    name="additionalInfo"
-                    value={formData.additionalInfo}
-                    onChange={handleChange}
-                    rows={3}
-                  />
-                </div> */}
 
                 <button type="submit" className="btn btn-success w-100">
                   Добавить питомца

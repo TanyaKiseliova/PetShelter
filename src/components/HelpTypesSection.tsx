@@ -21,11 +21,13 @@ const HelpTypesSection: React.FC = () => {
 
                 <div className="accordion-item">
                   <h2 className="accordion-header">
-                    <button className="accordion-button"  type="button"  data-bs-toggle="collapse" data-bs-target="#takePet"  >
+                    <button className="accordion-button collapsed"  type="button"  data-bs-toggle="collapse" data-bs-target="#takePet"  >
                       Взять питомца
                     </button>
                   </h2>
-                  <div id="takePet" className="accordion-collapse collapse show" data-bs-parent="#helpAccordion">
+                  <div id="takePet" className="accordion-collapse collapse
+                  
+                  " data-bs-parent="#helpAccordion">
                     <div className="accordion-body">
                       Самая большая радость для нас и главная цель - это нахождение нового дома для питомца, где он будет в безапасности, обеспечен любовью и всем необъходимым
                     </div>

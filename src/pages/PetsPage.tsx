@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Pet } from '../types';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { db } from '../lib/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
 
 const PetsPage: React.FC = () => {
-   const [pets, setPets] = useState<Pet[]>([]);
+  const [pets, setPets] = useState<Pet[]>([]);
   const { user } = useAuth();
-  const navigate = useNavigate();
+   const navigate = useNavigate();
+  //const pets = setPets();
   
   useEffect(() => {
     const fetchPets = async () => {
@@ -25,7 +26,7 @@ const PetsPage: React.FC = () => {
       <div className="d-flex justify-content-between align-items-center text-center mb-4 display-8 fw-bold text-primary">
         <h2 >Наши питомцы</h2>
         {user?.role === 'worker' && (
-          <button className="btn btn-primary" onClick={() => navigate('/add-pet')}>
+          <button className="btn btn-primary text-light" onClick={() => navigate('/add-pet')}>
             + Добавить
           </button>
           // <Link to="/add-pet" className="btn btn-primary text-white">
@@ -63,6 +64,10 @@ const PetsPage: React.FC = () => {
                       {pet.status === 'available' ? 'Доступен' :
                        pet.status === 'reserved' ? 'Зарезервирован' : 'Усыновлён'}
                     </span>
+
+                    <Link to={`/pet/${pet.id}`} className="details-button">
+            Подробнее
+          </Link>
                   </div>
                 </div>
               </div>
@@ -70,8 +75,23 @@ const PetsPage: React.FC = () => {
           ))}
         </div>
       )}
+
+
+      {/* {pets.map(pet => (
+  <div key={pet.id} className="pet-card-mini">
+    <h3>{pet.name}</h3>
+    <p>{pet.species}</p>
+    <Link to={`/pet/${pet.id}`}>Подробнее</Link>
+  </div>
+))} */}
     </div>
   );
 };
+
+
+// function setPets(petsList: Pet[]) {
+//   throw new Error('Function not implemented.');
+// }
+
 
 export default PetsPage;

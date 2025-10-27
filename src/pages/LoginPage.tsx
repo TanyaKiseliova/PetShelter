@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState('worker@shelter.com');
+  const [email, setEmail] = useState('shelterworker@gmail.com');
   const [password, setPassword] = useState('worker123');
   const [error, setError] = useState('');
   const { login } = useAuth();
@@ -22,12 +22,12 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-     <div className="container py-5">
+     <div className="container py-5 m-3">
     <div className="row justify-content-center">
       <div className="col-md-6">
         <div className="card shadow">
           <div className="card-header bg-primary text-white">
-            <h3 className="mb-0">Вход для работников</h3>
+            <h3 className="mb-0">Вход</h3>
           </div>
           <div className="card-body">
             {error && (

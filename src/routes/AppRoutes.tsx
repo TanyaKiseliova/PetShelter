@@ -9,6 +9,7 @@ import AboutPage from '../pages/AboutPage';
 import AddPetPage from '../pages/AddPetPage';
 import PetsPage from '../pages/PetsPage';
 import Footer from '../components/Footer';
+import PetDetailPage from '../pages/PetDetailPage';
 
 const ProtectedRoute: React.FC<{ 
   children: React.ReactNode; 
@@ -64,7 +65,10 @@ const AppRoutes: React.FC = () => {
                 <AddPetPage />
               </ProtectedRoute>
             } 
-          />          
+          />   
+
+          <Route path="/pet/:id" element={<PetDetailPage />} />
+
         </Routes>
       </div>
 

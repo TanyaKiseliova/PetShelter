@@ -11,11 +11,11 @@ export interface User {
 export interface Pet {
   id: string;
   name: string;
-  species: 'cat' | 'dog' ; 
+  species: 'cat' | 'dog' | 'other' ; 
   breed: string;
   age: number; 
   gender: 'male' | 'female';
-  photo: string; 
+  photo: ''; 
   color: string;
   vaccinated: boolean;
   neutered: boolean;
