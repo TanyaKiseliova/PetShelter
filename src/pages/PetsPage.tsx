@@ -10,7 +10,6 @@ const PetsPage: React.FC = () => {
   const [pets, setPets] = useState<Pet[]>([]);
   const { user } = useAuth();
    const navigate = useNavigate();
-  //const pets = setPets();
   
   useEffect(() => {
     const fetchPets = async () => {
@@ -24,7 +23,7 @@ const PetsPage: React.FC = () => {
   return (
     <div className="container py-5">
       <div className="d-flex justify-content-between align-items-center text-center mb-4 display-8 fw-bold text-primary">
-        <h2 >Наши питомцы</h2>
+        <h2 className='text-primary  mb-2 fs-1 fw-bold m-3'>Наши питомцы</h2>
         {user?.role === 'worker' && (
           <button className="btn btn-primary text-light" onClick={() => navigate('/add-pet')}>
             + Добавить
@@ -62,12 +61,12 @@ const PetsPage: React.FC = () => {
                       pet.status === 'reserved' ? 'bg-warning' : 'bg-secondary'
                     }`}>
                       {pet.status === 'available' ? 'Доступен' :
-                       pet.status === 'reserved' ? 'Зарезервирован' : 'Усыновлён'}
+                       pet.status === 'reserved' ? 'Зарезервирован' : 'Нашел дом'}
                     </span>
 
-                    <Link to={`/pet/${pet.id}`} className="details-button">
-            Подробнее
-          </Link>
+                    <Link to={`/pet/${pet.id}`} className="btn btn-secondary w-100 mt-2">
+                      Подробнее
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -75,23 +74,8 @@ const PetsPage: React.FC = () => {
           ))}
         </div>
       )}
-
-
-      {/* {pets.map(pet => (
-  <div key={pet.id} className="pet-card-mini">
-    <h3>{pet.name}</h3>
-    <p>{pet.species}</p>
-    <Link to={`/pet/${pet.id}`}>Подробнее</Link>
-  </div>
-))} */}
     </div>
   );
 };
-
-
-// function setPets(petsList: Pet[]) {
-//   throw new Error('Function not implemented.');
-// }
-
 
 export default PetsPage;

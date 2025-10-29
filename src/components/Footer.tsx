@@ -3,7 +3,7 @@ import logo from '../assets/images/logo/dogLogo.png';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-light text-dark py-4 mt-5">
+    <footer className="bg-light text-dark py-4 mt-auto">
       <div className="container">
         <div className="row">
           <div className="col-md-4 mb-3">
@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
         </div>
         <hr className="my-3 bg-secondary" />
         <div className="text-center">
-          <p className="mb-0">&copy; {new Date().getFullYear()} PetShelter. Все права защищены.</p>
+          <p className="mb-0">&copy; {new Date().getFullYear()} Pet shelter PetInGoodHands. Все права защищены.</p>
         </div>
       </div>
     </footer>

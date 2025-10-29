@@ -37,51 +37,52 @@ const AppRoutes: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <>
+     <div className="d-flex flex-column min-vh-100">
       <Header />
-      <div className="container py-4">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route 
-            path="/register" 
-            element={user ? <Navigate to="/" replace /> : <RegisterPage />} 
-          />
-          <Route 
-            path="/login" 
-            element={user ? <Navigate to="/" replace /> : <LoginPage />} 
-          />
-           <Route 
-            path="/about" 
-            element={<AboutPage />} 
-          />
+      <main className="flex-grow-1">
+        <div className="container py-4">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route 
+              path="/register" 
+              element={user ? <Navigate to="/" replace /> : <RegisterPage />} 
+            />
+            <Route 
+              path="/login" 
+              element={user ? <Navigate to="/" replace /> : <LoginPage />} 
+            />
+            <Route 
+              path="/about" 
+              element={<AboutPage />} 
+            />
 
-          <Route 
-            path="/pets" 
-            element={<PetsPage />} 
-          />
-          <Route 
-            path="/add-pet" 
-            element={
+            <Route 
+              path="/pets" 
+              element={<PetsPage />} 
+            />
+            <Route 
+              path="/add-pet" 
+              element={
+                <ProtectedRoute allowedRoles={['worker']}>
+                  <AddPetPage />
+                </ProtectedRoute>
+              } 
+            />   
+
+            <Route path="/pet/:id" element={<PetDetailPage />} />
+
+            <Route path="/pet/:petId/edit" element={
               <ProtectedRoute allowedRoles={['worker']}>
-                <AddPetPage />
-              </ProtectedRoute>
-            } 
-          />   
+                  <EditPetPage />
+                </ProtectedRoute>
+              } />
+    
 
-          <Route path="/pet/:id" element={<PetDetailPage />} />
-
-          <Route path="/pet/:petId/edit" element={
-             <ProtectedRoute allowedRoles={['worker']}>
-                <EditPetPage />
-              </ProtectedRoute>
-            } />
-  
-
-        </Routes>
-      </div>
-
+          </Routes>
+        </div>
+      </main> 
       <Footer />
-    </>
+    </div>
   );
 };
 

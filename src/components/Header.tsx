@@ -64,17 +64,17 @@ const handleAction = () => {
           <div className="d-flex align-items-center justify-content-center" >
             {user ? (
               <div className="d-flex align-items-center">
-                <span className="text-white"> {user.name}</span>
-                <button onClick={handleAction} className="btn btn-outline-light btn-sm" >
+                <span className="text-white me-2"> {user.name}</span>
+                <button onClick={handleAction} className="btn btn-outline-light btn-sm me-2" >
                    Выйти
                 </button>
               </div>
             ) : (
                <div className="d-flex gap-2">
-                  <Link to="/register" className="btn btn-outline-light btn-sm" onClick={closeNavbar}>
+                  <Link to="/register" className="btn btn-outline-light btn-sm me-2" onClick={closeNavbar}>
                     Регистрация
                    </Link>
-                    <Link to="/login" className="btn btn-outline-light btn-sm " onClick={closeNavbar}>
+                    <Link to="/login" className="btn btn-outline-light btn-sm me-2" onClick={closeNavbar}>
                      Вход
                    </Link>
                 </div>
