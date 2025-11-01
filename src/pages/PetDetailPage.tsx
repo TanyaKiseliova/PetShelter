@@ -5,6 +5,7 @@ import { db } from '../lib/firebase';
 import { useAuth } from '../contexts/AuthContext';
 import { Pet } from '../types'; 
 import {  deleteDoc } from 'firebase/firestore';
+import AnimalLoader from '../components/Loading';
 
 export default function PetDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -43,7 +44,7 @@ export default function PetDetailPage() {
   
 
 
-  if (loading) return <div>Загрузка...</div>;
+  if (loading) return   <AnimalLoader />;
   if (error) return <div className="error">{error}</div>;
 
 
@@ -81,7 +82,7 @@ const handleEdit = () => {
            <p className="mb-3">
           Пожалуйста, войдите в аккаунт, чтобы увидеть полную информацию о питомце.
           </p>
-           <Link to="/login" className="btn btn-outline-dark btn-sm buttom">
+           <Link to="/login" className="btn btn-outline-dark btn-sm button">
              Вход
           </Link>
         </div>
@@ -142,7 +143,7 @@ const handleEdit = () => {
                     </li>
 
                     <li className="list-group-item">
-                      <strong>Кастрирован/стерилизован:</strong>{' '}
+                       <strong>{pet.gender === 'female' ? 'Стерелизована' : 'Кастрирован'}:</strong>{' '}
                       <span className={`badge ${pet.neutered ? 'bg-success' : 'bg-danger'}`}>
                         {pet.neutered ? 'Да' : 'Нет'}
                       </span>
@@ -199,14 +200,7 @@ const handleEdit = () => {
           </div>
         )}
 
-        
-        <div className="mt-4 d-flex gap-2 flex-wrap justify-content-center">
-          {user?.role === 'visitor' && pet?.status === 'available' && (
-            <button className="btn btn-primary">
-              Хочу взять питомца или узнать больше
-            </button>
-          )}
-
+                <div className="mt-4 d-flex gap-2 flex-wrap justify-content-center">
           {user?.role === 'worker' && (
             <>
               <button onClick={handleEdit} className="btn btn-secondary">

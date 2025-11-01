@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { db } from '../lib/firebase';
 import { collection, getDocs, query } from 'firebase/firestore';
+import AnimalLoader from '../components/Loading';
 
 
 const PetsPage: React.FC = () => {
@@ -11,6 +12,7 @@ const PetsPage: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [filteredPets, setFilteredPets] = useState<Pet[]>([]);
+  const [loading, setLoading] = useState(true);
 
     const [filters, setFilters] = useState({
     species: 'all',
@@ -35,10 +37,14 @@ const PetsPage: React.FC = () => {
         alert('Не удалось загрузить питомцев');
         console.error(err);
       }
+      finally {
+        setLoading(false);
+      }
     };
     fetchPets();
   }, []);
 
+ 
   
   useEffect(() => {
     let result = [...pets];
@@ -69,6 +75,11 @@ const PetsPage: React.FC = () => {
     const { name, value } = e.target;
     setFilters(prev => ({ ...prev, [name]: value }));
   };
+
+
+     if (loading) {
+    return <AnimalLoader />;
+  }
 
   return (
     <div className="container py-5">

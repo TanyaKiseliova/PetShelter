@@ -11878,6 +11878,10 @@ textarea.form-control-lg {
 [data-bs-theme=dark] .bg-white {
   background-color: #3e3026 !important;
 }
+[data-bs-theme=dark] .button {
+  background: #f0e6d8;
+  color: #2c1f1a;
+}
 [data-bs-theme=dark] .accordion .accordion-item {
   background-color: #3e3026;
   border-color: #5d4a3a;

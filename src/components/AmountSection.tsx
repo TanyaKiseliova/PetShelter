@@ -1,3 +1,4 @@
+import AnimatedCounter from "./AnimatedCounter";
 
 const AmountSection: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ const AmountSection: React.FC = () => {
                 <div className="col-md-4 mb-4">
                   <div className="card h-100 shadow-sm">
                     <div className="card-body">
-                      <h3 className="card-title d-flex justify-content-center align-items-center">5</h3>
+                      <h3 className="card-title d-flex justify-content-center align-items-center"><AnimatedCounter target={5} /></h3>
                       <p className="card-text d-flex justify-content-center align-items-center">
                         лет опыта 
                       </p>
@@ -20,9 +21,9 @@ const AmountSection: React.FC = () => {
                 <div className="col-md-4 mb-4">
                   <div className="card h-100 shadow-sm">
                     <div className="card-body">
-                      <h3 className="card-title d-flex justify-content-center align-items-center">150</h3>
+                      <h3 className="card-title d-flex justify-content-center align-items-center" > <AnimatedCounter target={150} /></h3>
                       <p className="card-text d-flex justify-content-center align-items-center">
-                      питомцев счастливы в новвх домах
+                      питомцев счастливы в новых домах
                       </p>
                     </div>
                   </div>
@@ -31,7 +32,7 @@ const AmountSection: React.FC = () => {
                 <div className="col-md-4 mb-4">
                   <div className="card h-100 shadow-sm">
                     <div className="card-body">
-                      <h3 className="card-title  d-flex justify-content-center align-items-center">20</h3>
+                      <h3 className="card-title  d-flex justify-content-center align-items-center"><AnimatedCounter target={20} /></h3>
                       <p className="card-text d-flex justify-content-center align-items-center">
                         животных все еще в приюте 
                       </p>

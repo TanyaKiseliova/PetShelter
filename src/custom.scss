@@ -51,7 +51,10 @@ $border-color-dark: #5d4a3a;
     background-color: $card-bg-dark !important;
   }
   
-
+  .button{
+    background: $body-color-dark;
+    color: $dark-dark;
+  }
   .accordion {
     .accordion-item {
       background-color: $card-bg-dark;
