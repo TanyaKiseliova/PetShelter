@@ -11,8 +11,6 @@ const PetsPage: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [filteredPets, setFilteredPets] = useState<Pet[]>([]);
-    const [loading, setLoading] = useState(true);
-  
 
     const [filters, setFilters] = useState({
     species: 'all',
@@ -36,8 +34,6 @@ const PetsPage: React.FC = () => {
       } catch (err) {
         alert('Не удалось загрузить питомцев');
         console.error(err);
-      } finally {
-        setLoading(false);
       }
     };
     fetchPets();
@@ -76,7 +72,7 @@ const PetsPage: React.FC = () => {
 
   return (
     <div className="container py-5">
-      <div className="d-flex justify-content-between align-items-center text-center mb-4 display-8 fw-bold text-primary">
+      <div className="d-flex justify-content-between align-items-center  mb-4 display-8 fw-bold text-primary">
         <h2 className='text-primary  mb-2 fs-1 fw-bold m-3'>Наши питомцы</h2>
         {user?.role === 'worker' && (
           <button className="btn btn-primary text-light" onClick={() => navigate('/add-pet')}>

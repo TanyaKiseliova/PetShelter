@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import logo from '../assets/images/logo/dogLogoWhite.png';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Header: React.FC = () => {
 
@@ -9,6 +10,7 @@ const Header: React.FC = () => {
 const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation(); 
+   const { darkMode, toggleTheme } = useTheme();
 
   const handleLogout = () => {
     logout();
@@ -49,6 +51,22 @@ const handleAction = () => {
         
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto p-1 ">
+
+            <li className="nav-item me-3">
+              <button
+                className="btn btn-outline-light"
+                onClick={toggleTheme}
+                title={darkMode ? "Светлая тема" : "Тёмная тема"}
+              >
+                {darkMode ? (
+                  <i className="bi bi-sun"></i>
+                ) : (
+                  <i className="bi bi-moon-stars"></i>
+                )}
+              </button>
+            </li>
+
+            
             <li className="nav-item text-center">
               <Link to="/"   className={`nav-link ${isActive('/') ? 'fw-bold text-light ' : ''}`} onClick={closeNavbar}>Главная</Link>
             </li>

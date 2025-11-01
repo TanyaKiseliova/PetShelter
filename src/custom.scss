@@ -1,15 +1,111 @@
 
-$primary: #d2691e;      
-$secondary: #ff8c00;     
-$success: #28a745;
-$light: #fdf6f0;        
-$dark: #3e2723;        
+$primary:   #d2691e;  
+$secondary: #ff8c00;  
+$success:   #28a745;   
+$info:      #b8ad17;   
+$danger:    #9a0a1a;    
+$light:     #fdf6f0;    
+$dark:      #3e2723;    
 
+$enable-dark-mode: true;
 
-$info:      #b8ad17;
-$danger:    #9a0a1a;
+$primary-dark:    #e67c22;    
+$secondary-dark:  #ffa500;    
+$success-dark:    #34ce57;   
+$info-dark:       #d4c71c;   
+$danger-dark:     #c82333;    
+$light-dark:      #4a3c32;   
+$dark-dark:       #2c1f1a;    
 
-$font-family-sans-serif: 'Inter', sans-serif;
-
+$body-bg-dark: #35281f;        
+$body-color-dark: #f0e6d8;    
+$card-bg-dark: #3e3026;       
+$border-color-dark: #5d4a3a;  
 
 @import "~bootstrap/scss/bootstrap";
+
+[data-bs-theme="dark"] {
+
+   .custom-list li:nth-child(odd):before  {
+    content: "🐱"; 
+  }
+
+   .custom-list li:nth-child(even):before  {
+    content: "🐶"; 
+  }
+
+  .navbar {
+    background: linear-gradient(135deg, $dark, $primary-dark) !important;
+  }
+
+  footer {
+    background: linear-gradient(135deg, $light-dark, $dark) !important;
+    color: $light !important; 
+  }
+  
+  .bg-light {
+    background-color: transparent !important;
+  }
+  
+  .bg-white {
+    background-color: $card-bg-dark !important;
+  }
+  
+
+  .accordion {
+    .accordion-item {
+      background-color: $card-bg-dark;
+      border-color: $border-color-dark;
+      
+      .accordion-button {
+        background-color: $card-bg-dark;
+        color: $body-color-dark;
+        
+        &:not(.collapsed) {
+          background-color: $primary-dark;
+          color: $dark-dark;
+        }
+      }
+      
+      .accordion-body {
+        background-color: lighten($card-bg-dark, 3%);
+        color: $body-color-dark;
+        border-top: 1px solid $border-color-dark;
+      }
+    }
+  }
+}
+
+  .volunteer-card {
+    background-color: $card-bg-dark !important;
+    border: 1px solid $border-color-dark !important;
+    
+    .card-body {
+      background-color: $card-bg-dark;
+      color: $body-color-dark;
+    }
+  }
+
+
+.help-section {
+  .bg-white {
+    border: 1px solid rgba($primary, 0.2);
+    box-shadow: 0 4px 15px rgba($primary, 0.1) !important;
+  }
+}
+
+
+[data-bs-theme="light"] {
+  .volunteer-card {
+    background: linear-gradient(135deg, #fff, $light) !important;
+    border: 1px solid rgba($primary, 0.2) !important;
+  }
+
+  .card-body {
+    background:  white !important;
+
+     .card-title {
+      color: $primary !important;
+    }
+   }
+ }

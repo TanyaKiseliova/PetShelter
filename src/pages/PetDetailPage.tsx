@@ -81,7 +81,7 @@ const handleEdit = () => {
            <p className="mb-3">
           Пожалуйста, войдите в аккаунт, чтобы увидеть полную информацию о питомце.
           </p>
-           <Link to="/login" className="btn btn-outline-dark btn-sm ">
+           <Link to="/login" className="btn btn-outline-dark btn-sm buttom">
              Вход
           </Link>
         </div>

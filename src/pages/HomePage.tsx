@@ -8,7 +8,7 @@ const HomePage: React.FC = () => {
   return (
     <>     
       <div className="container py-5">
-        <div className="row align-items-center">
+        <div className="row align-items-center m-4">
           <div className="col-lg-7 mb-4">
             <img 
               src="https://images.techinsider.ru/upload/img_cache/926/926779322a409549131ee5a32a8d1ec0_ce_2560x1344x0x128_cropped_1200x628.jpg" 
