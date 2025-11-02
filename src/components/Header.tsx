@@ -32,6 +32,11 @@ const handleAction = () => {
     closeNavbar();
   };
 
+  const handleActionForTheme = () => {
+    toggleTheme();
+    closeNavbar();
+  };
+
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
@@ -55,7 +60,7 @@ const handleAction = () => {
             <li className="nav-item me-3">
               <button
                 className="btn btn-outline-light"
-                onClick={toggleTheme}
+                onClick= { handleActionForTheme}
                 title={darkMode ? "Светлая тема" : "Тёмная тема"}
               >
                 {darkMode ? (

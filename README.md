@@ -1,46 +1,79 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# "В добрые руки" (In good hands) 🐾
+is a web project for a shelter
 
-## Available Scripts
+There are some scrins from the App
 
-In the project directory, you can run:
+## Screenshots
 
-### `npm start`
+| Home Page | Our team and ways to help |
+![alt text](/src/assets/images/scrins/image.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+| About Page | Dark theme |
+![alt text](/src/assets/images/scrins/image-1.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+| Pets Page | Our pets |
+![alt text](/src/assets/images/scrins/image-2.png)
 
-### `npm test`
+| Pet pesonal Page | Personal page for Tyzik |
+![alt text](/src/assets/images/scrins/image-3.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Used technologies
+React, Bootstrap and scss, Firebase (Auth + Firestore), Vercel
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Authentication & Roles 
+- **Dual-role system** 
+  - **Users** can see pet's detailed cards
+  - **Workers** can Full CRUD operations on pets 
+- **Protected routes** based on user roles 
+- **Secure login/register** 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### User Experience 
+- **Theme switching** Light/Dark mode which save in local storage
+- **Animated loader** god barking GIF with transparent background 
+- **Adaptive design** which is working on diffrent devices
+- **Header and Footer** on each page
+- **Burger** in header
+- **Accordion** for types of help
+- **Map** with location of the shelter
+- **Video** from YouTube to learn more about shelter
+- **Counter animation** for the amountSection
+- **Changing emoji** in the component AboutSection 
+ depending on the theme 
 
-### `npm run eject`
+### Pet Management
+- **Pet catalog** and detailed pet cards with photos and all necessary information 
+- **Filter** pets by type, age, gender and status
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Data Base
+- **Firebase** is used as data base, there are info about all users, workers and pets
+- **imgbb** is used to save pet's photos. So in DB there are no photos, only links to imgbb
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Testing 
 
-## Learn More
+### User Account 
+- **Email**: alex@gmail.com
+- **Password**: alex90
+- **Permissions**: View personal pet's pages
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+or you can redister on your own 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Worker Accounts 
+**Worker 1:**
+- **Email**: shelterworker@gmail.com
+- **Password**: worker123
+- **Permissions**: Full pet management (CRUD)
+
+**Worker 2:**
+- **Email**: mary@gmail.com
+- **Password**: maryCat
+- **Permissions**: Full pet management (CRUD)
+
+
+Thank you for reading
+I hope you love animals as much as mine and this project is interesting for you
