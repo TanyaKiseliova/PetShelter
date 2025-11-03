@@ -1,37 +1,45 @@
 
-# "В добрые руки" (In good hands) 🐾
-is a web project for a shelter
+# 🐾 "В добрые руки" (In good hands) 🐾 ![Logo](/public/dogLogo.ico)
 
-There are some scrins from the App
+is a website for a shelter which helps homeless dogs and cats find new loving home.
 
-## Screenshots
+**Live Demo** (link to Vercel with this project): [text](https://pet-shelter-chi.vercel.app/)
+
+--- 
+
+## 📸 Screenshots
 
 | Home Page | Our team and ways to help |
-![alt text](/src/assets/images/scrins/image.png)
+![Home Page](/src/assets/images/scrins/image.png)
 
 | About Page | Dark theme |
-![alt text](/src/assets/images/scrins/image-1.png)
+![About Page](/src/assets/images/scrins/image-1.png)
 
 | Pets Page | Our pets |
-![alt text](/src/assets/images/scrins/image-2.png)
+![Pets Page](/src/assets/images/scrins/image-2.png)
 
 | Pet pesonal Page | Personal page for Tyzik |
-![alt text](/src/assets/images/scrins/image-3.png)
+![Pet Page](/src/assets/images/scrins/image-3.png)
 
-## Used technologies
-React, Bootstrap and scss, Firebase (Auth + Firestore), Vercel
+| Pet pesonal Page | Update pet's page in worker account |
+![Pet Update](/src/assets/images/scrins/image-4.png)
 
+--- 
+## 🛠️ Used technologies
+React, TypeScript, Bootstrap and scss, Firebase (Auth + Firestore), Vercel
 
-## Features 
+---
 
-### Authentication & Roles 
+## ✅ Features 🌟
+
+### 🔐 Authentication & Roles 
 - **Dual-role system** 
   - **Users** can see pet's detailed cards
   - **Workers** can Full CRUD operations on pets 
 - **Protected routes** based on user roles 
 - **Secure login/register** 
 
-### User Experience 
+### 📱 User Experience 💻
 - **Theme switching** Light/Dark mode which save in local storage
 - **Animated loader** god barking GIF with transparent background 
 - **Adaptive design** which is working on diffrent devices
@@ -44,24 +52,24 @@ React, Bootstrap and scss, Firebase (Auth + Firestore), Vercel
 - **Changing emoji** in the component AboutSection 
  depending on the theme 
 
-### Pet Management
+### 🐶 Pet Management
 - **Pet catalog** and detailed pet cards with photos and all necessary information 
 - **Filter** pets by type, age, gender and status
 
 
-### Data Base
-- **Firebase** is used as data base, there are info about all users, workers and pets
+### ⛃ Database
+- **Firebase** is used as database, there are info about all users, workers and pets
 - **imgbb** is used to save pet's photos. So in DB there are no photos, only links to imgbb
 
 
-## Testing 
+## 👩🏻‍🔬⚗️🧪🥼 Testing 
 
 ### User Account 
 - **Email**: alex@gmail.com
 - **Password**: alex90
 - **Permissions**: View personal pet's pages
 
-or you can redister on your own 
+*You can also register a new personal account*
 
 ### Worker Accounts 
 **Worker 1:**
@@ -74,6 +82,7 @@ or you can redister on your own
 - **Password**: maryCat
 - **Permissions**: Full pet management (CRUD)
 
-
+--- 
 Thank you for reading
-I hope you love animals as much as mine and this project is interesting for you
+**Built with compassion for flaffy friends** 🐾🐶❤️🐱🐾
+I hope you love animals as much as I do and this project is interesting for you
