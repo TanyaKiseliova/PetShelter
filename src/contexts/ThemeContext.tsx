@@ -21,22 +21,13 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     });
   };
 
-
-  // src/contexts/ThemeContext.tsx
-useEffect(() => {
-  if (darkMode) {
-    document.documentElement.setAttribute('data-bs-theme', 'dark');
-  } else {
-    document.documentElement.setAttribute('data-bs-theme', 'light');
-  }
-}, [darkMode]);
-//   useEffect(() => {
-//     if (darkMode) {
-//       document.body.classList.add('dark-theme');
-//     } else {
-//       document.body.classList.remove('dark-theme');
-//     }
-//   }, [darkMode]);
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.setAttribute('data-bs-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-bs-theme', 'light');
+    }
+  }, [darkMode]);
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleTheme }}>

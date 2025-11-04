@@ -7,7 +7,6 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 interface AuthContextType {
   user: (User & { role?: string }) | null;
-  //user: User | null;
   login: (email: string, password: string) => Promise<boolean>;
   register: (userData: Omit<User, 'id' | 'createdAt'>) => Promise<boolean>;
   logout: () => Promise<void>;

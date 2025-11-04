@@ -8,7 +8,6 @@ const VideoSection: React.FC = () => {
             <iframe
               src="https://www.youtube.com/embed/l5tIuiRpkDo?si=gZm3HWbFjmoNmLHO"
               title="Video about shelter"
-              // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
             ></iframe>

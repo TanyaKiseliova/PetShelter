@@ -19,13 +19,11 @@ export interface Pet {
   color: string;
   vaccinated: boolean;
   neutered: boolean;
-  // attitudeToPeople: string;
   character: string; 
   features: string; 
   status: 'available' | 'reserved' | 'adopted'; 
   history: string; 
   arrivalDate: string; 
-  // additionalInfo: string; 
   createdAt: string;
 }
 

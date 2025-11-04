@@ -1,10 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyApZjtZlXH1XnOTPb078QBx6Gb1T63tIls",
   authDomain: "petshelter2-52679.firebaseapp.com",
@@ -14,7 +11,6 @@ const firebaseConfig = {
   appId: "1:34235768695:web:0468a0e2585ae282ac0b72"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig)
 
 export const db = getFirestore(app);

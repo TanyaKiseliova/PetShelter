@@ -3,7 +3,7 @@
 
 is a website for a shelter which helps homeless dogs and cats find new loving home.
 
-**Live Demo** (link to Vercel with this project): [text](https://pet-shelter-chi.vercel.app/)
+**Live Demo** (link to Vercel with this project): [deployed project on Vercel](https://pet-shelter-chi.vercel.app/)
 
 --- 
 
@@ -23,6 +23,9 @@ is a website for a shelter which helps homeless dogs and cats find new loving ho
 
 | Pet pesonal Page | Update pet's page in worker account |
 ![Pet Update](/src/assets/images/scrins/image-4.png)
+
+| logIn Page | LogIn page in dark theme |
+![Log in](/src/assets/images/scrins/image-5.png)
 
 --- 
 ## 🛠️ Used technologies
@@ -62,7 +65,7 @@ React, TypeScript, Bootstrap and scss, Firebase (Auth + Firestore), Vercel
 - **imgbb** is used to save pet's photos. So in DB there are no photos, only links to imgbb
 
 
-## 👩🏻‍🔬⚗️🧪🥼 Testing 
+## 🧪 Testing 👩🏻‍🔬
 
 ### User Account 
 - **Email**: alex@gmail.com
