@@ -8,7 +8,8 @@ const LoginPage: React.FC = () => {
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
-
+  const [showPassword, setShowPassword] = useState(false);
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -45,8 +46,24 @@ const LoginPage: React.FC = () => {
               
               <div className="mb-3">
                 <label htmlFor="password" className="form-label">Пароль</label>
-                <input type="password" className="form-control" id="password" 
-                onChange={(e) => setPassword(e.target.value)} required/>
+                <div className="position-relative">
+                    <input type={showPassword ? "text" : "password"} className="form-control  pe-5" id="password" 
+                    onChange={(e) => setPassword(e.target.value)} required   
+                    />
+
+                    <button
+                        type="button"
+                        className="btn btn-link position-absolute end-0 top-50 translate-middle-y"
+                        onClick={() => setShowPassword(!showPassword)}
+                        style={{ zIndex: 10 }}
+                        >
+                        {showPassword ? (
+                          <i className="bi bi-eye-slash"></i>
+                        ) : (
+                          <i className="bi bi-eye"></i>
+                        )}
+                    </button>
+                </div>    
               </div>
               
               <button type="submit" className="btn btn-primary w-100 text-light">
@@ -55,7 +72,7 @@ const LoginPage: React.FC = () => {
               
               <div className="text-center mt-3">
                 <a href="/register" className="text-decoration-none">
-                  Нет аккаунта? Зарегистрироваться как посетитель
+                  Нет аккаунта? Зарегистрироваться
                 </a>
               </div>
             </form>

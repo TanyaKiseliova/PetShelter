@@ -6,12 +6,16 @@ const RegisterPage: React.FC = () => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
+
+const [password, setPassword] = useState('');
+const [confirmPassword, setConfirmPassword] = useState('');
+const [showPassword, setShowPassword] = useState(false);
+const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,27 +99,59 @@ const RegisterPage: React.FC = () => {
               
               <div className="mb-3">
                 <label htmlFor="password" className="form-label">Пароль</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  minLength={6}
-                />
+                <div className="position-relative">
+                  <input
+                    type={showPassword ? "text" : "password"} 
+                    className="form-control  pe-5"
+                    id="password"
+                    name="password"
+                    value={password}
+                     onChange={(e) => setPassword(e.target.value)}
+                    required
+                    minLength={6}
+                  />
+
+                  <button
+                    type="button"
+                     className="btn btn-link position-absolute end-0 top-50 translate-middle-y"
+                    onClick={() => setShowPassword(!showPassword)} 
+                    style={{ zIndex: 10 }}
+                   >
+                     {showPassword ? (
+                       <i className="bi bi-eye-slash"></i>
+                        ) : (
+                       <i className="bi bi-eye"></i>
+                     )}
+                  </button>
+                </div>
               </div>
               
               <div className="mb-3">
                 <label htmlFor="confirmPassword" className="form-label">Подтвердите пароль</label>
-                <input type="password" className="form-control"
+                <div className="position-relative">
+                <input  type={showConfirmPassword ? "text" : "password"} 
+                  className="form-control  pe-5"
                   id="confirmPassword"
                   name="confirmPassword"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                 />
+
+                <button
+                    type="button"
+                     className="btn btn-link position-absolute end-0 top-50 translate-middle-y"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    style={{ zIndex: 10 }}
+                   >
+                     {showConfirmPassword ? (
+                       <i className="bi bi-eye-slash"></i>
+                        ) : (
+                       <i className="bi bi-eye"></i>
+                     )}
+                </button>
+
+                </div>
               </div>
               
               <button type="submit" className="btn btn-success w-100 text-light ">
@@ -124,7 +160,7 @@ const RegisterPage: React.FC = () => {
               
               <div className="text-center mt-3">
                 <a href="/login" className="text-decoration-none">
-                  Уже есть аккаунт? Войти как работник
+                  Уже есть аккаунт? Войти
                 </a>
               </div>
             </form>
