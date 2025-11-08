@@ -68,8 +68,14 @@ React, TypeScript, Bootstrap and scss, Firebase (Auth + Firestore), Vercel
 ## 🧪 Testing 👩🏻‍🔬
 
 ### User Account 
+**User 1:**
 - **Email**: alex@gmail.com
 - **Password**: alex90
+- **Permissions**: View personal pet's pages
+
+**User 2:**
+- **Email**: tanik@gmail.com
+- **Password**: itanik
 - **Permissions**: View personal pet's pages
 
 *You can also register a new personal account*
@@ -86,6 +92,13 @@ React, TypeScript, Bootstrap and scss, Firebase (Auth + Firestore), Vercel
 - **Permissions**: Full pet management (CRUD)
 
 --- 
+
+The websites of the animal shelters [Super Kot](https://superkot.by/) and [Egida](https://egida.by/) in Minsk were used as a basis.
+They inspired the creation of something similar, but  with less functionality.
+
+--- 
 Thank you for reading
 **Built with compassion for flaffy friends** 🐾🐶❤️🐱🐾
 I hope you love animals as much as I do and this project is interesting for you
+
+
