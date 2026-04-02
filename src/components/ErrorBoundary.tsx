@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 interface ErrorBoundaryState {
   hasError: boolean;
   error: Error | null;
 }
 
-class ErrorBoundary extends Component<{ children: React.ReactNode }, ErrorBoundaryState> {
+class ErrorBoundary extends Component<
+  { children: React.ReactNode },
+  ErrorBoundaryState
+> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
     this.state = { hasError: false, error: null };
@@ -25,8 +28,11 @@ class ErrorBoundary extends Component<{ children: React.ReactNode }, ErrorBounda
         <div className="container py-5">
           <div className="alert alert-danger">
             <h4>Произошла ошибка</h4>
-            <p>{this.state.error?.message || 'Неизвестная ошибка'}</p>
-            <button onClick={() => window.location.reload()} className="btn btn-primary">
+            <p>{this.state.error?.message || "Неизвестная ошибка"}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="btn btn-primary"
+            >
               Перезагрузить страницу
             </button>
           </div>

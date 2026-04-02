@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { db } from '../lib/firebase';
-import { doc, getDoc } from 'firebase/firestore';
-import PetForm from '../components/PetForm';
-
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { db } from "../lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import PetForm from "../components/PetForm";
 
 const EditPetPage: React.FC = () => {
   const { petId } = useParams<{ petId: string }>();
@@ -15,45 +14,43 @@ const EditPetPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user?.role !== 'worker') {
-      navigate('/');
+    if (user?.role !== "worker") {
+      navigate("/");
     }
   }, [user, navigate]);
 
-  
   useEffect(() => {
     if (!petId) return;
 
     const fetchPet = async () => {
       try {
-        const docRef = doc(db, 'pets', petId);
+        const docRef = doc(db, "pets", petId);
         const docSnap = await getDoc(docRef);
 
         if (!docSnap.exists()) {
-          navigate('/pets');
+          navigate("/pets");
           return;
         }
 
         const data = docSnap.data();
         setInitialData({
-          name: data.name || '',
-          species: data.species || 'dog',
-          breed: data.breed || '',
+          name: data.name || "",
+          species: data.species || "dog",
+          breed: data.breed || "",
           age: data.age || 1,
-          gender: data.gender || 'male',
-          photo: data.photo || '',
-          color: data.color || '',
+          gender: data.gender || "male",
+          photo: data.photo || "",
+          color: data.color || "",
           vaccinated: data.vaccinated || false,
           neutered: data.neutered || false,
-          character: data.character || '',
-          features: data.features || '',
-          status: data.status || 'available',
-          history: data.history || '',
+          character: data.character || "",
+          features: data.features || "",
+          status: data.status || "available",
+          history: data.history || "",
           arrivalDate: data.arrivalDate
             ? data.arrivalDate.substring(0, 10)
-            : new Date().toISOString().split('T')[0],
+            : new Date().toISOString().split("T")[0],
         });
-       
       } catch (err) {
         console.error(err);
       } finally {
@@ -77,8 +74,9 @@ const EditPetPage: React.FC = () => {
               <h3 className="mb-0">Редактировать питомца</h3>
             </div>
             <div className="card-body">
-               {initialData && <PetForm mode="edit" petId={petId} initialData={initialData} />}
-           
+              {initialData && (
+                <PetForm mode="edit" petId={petId} initialData={initialData} />
+              )}
             </div>
           </div>
         </div>

@@ -1,7 +1,5 @@
-
 import React from 'react';
 import VolunteerCard from './VolunteerCard';
-
 import mariaImg from '../assets/images/volunteer/maria.jpg';
 import olegImg from '../assets/images/volunteer/oleg.jpg';
 import vikaImg from '../assets/images/volunteer/vika.jpg';

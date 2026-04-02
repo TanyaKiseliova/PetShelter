@@ -1,4 +1,3 @@
-
 export interface User {
   id: string;
   email: string;
@@ -26,18 +25,3 @@ export interface Pet {
   arrivalDate: string; 
   createdAt: string;
 }
-
-// export interface RegisterFormData {
-//   name: string;
-//   email: string;
-//   password: string;
-//   confirmPassword: string;
-// }
-
-// export interface Inventory {
-//   id: number;
-//   title: string;
-//   description: string;
-//   customIdFormat: string;
-//   animalCount: number;
-// }

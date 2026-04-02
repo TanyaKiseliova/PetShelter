@@ -1,17 +1,14 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import PetForm from '../components/PetForm';
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import PetForm from "../components/PetForm";
 
 const AddPetPage: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
- 
-
-   if (user?.role !== 'worker') {
-    navigate('/');
+  if (user?.role !== "worker") {
+    navigate("/");
     return null;
   }
 
@@ -23,10 +20,10 @@ const AddPetPage: React.FC = () => {
             <div className="card-header bg-primary text-white">
               <h3 className="mb-0">Добавить нового питомца</h3>
             </div>
-              <div className="card-body">
-                <PetForm mode="create" />
-              </div>
-           </div>
+            <div className="card-body">
+              <PetForm mode="create" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

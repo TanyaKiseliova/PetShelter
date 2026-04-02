@@ -79,8 +79,7 @@ const PetForm: React.FC<PetFormProps> = ({ mode, petId, initialData }) => {
     const fd = new FormData();
     fd.append('image', file);
 
-    const response = await fetch(
-      'https://api.imgbb.com/1/upload?key=d167a63cf28622b94295f49f63e099d7',
+    const response = await fetch(`https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGBB}`,
       { method: 'POST', body: fd }
     );
 

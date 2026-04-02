@@ -1,11 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 interface AnimatedCounterProps {
   target: number;
   duration?: number;
 }
 
-export default function AnimatedCounter({ target, duration = 2000 }: AnimatedCounterProps) {
+export default function AnimatedCounter({
+  target,
+  duration = 2000,
+}: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {

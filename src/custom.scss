@@ -1,37 +1,41 @@
-
-$primary:   #d2691e;  
-$secondary: #ff8c00;  
-$success:   #28a745;   
-$info:      #b8ad17;   
-$danger:    #9a0a1a;    
-$light:     #fdf6f0;    
-$dark:      #3e2723;    
+$primary: #d2691e;
+$secondary: #ff8c00;
+$success: #28a745;
+$info: #b8ad17;
+$danger: #9a0a1a;
+$light: #fdf6f0;
+$dark: #3e2723;
 
 $enable-dark-mode: true;
 
-$primary-dark:    #e67c22;    
-$secondary-dark:  #ffa500;    
-$success-dark:    #34ce57;   
-$info-dark:       #d4c71c;   
-$danger-dark:     #c82333;    
-$light-dark:      #4a3c32;   
-$dark-dark:       #2c1f1a;    
+$primary-dark: #e67c22;
+$secondary-dark: #ffa500;
+$success-dark: #34ce57;
+$info-dark: #d4c71c;
+$danger-dark: #c82333;
+$light-dark: #4a3c32;
+$dark-dark: #2c1f1a;
 
-$body-bg-dark: #35281f;        
-$body-color-dark: #f0e6d8;    
-$card-bg-dark: #3e3026;       
-$border-color-dark: #5d4a3a;  
+$body-bg-dark: #35281f;
+$body-color-dark: #f0e6d8;
+$card-bg-dark: #3e3026;
+$border-color-dark: #5d4a3a;
 
 @import "~bootstrap/scss/bootstrap";
 
 [data-bs-theme="dark"] {
-
-   .custom-list li:nth-child(odd):before  {
-    content: "🐱"; 
+  .custom-list li:nth-child(odd):before {
+    // content: "🐱";
+    color: $primary-dark;
+    content: "\f6be";
+    font-family: "Font Awesome 6 Free";
   }
 
-   .custom-list li:nth-child(even):before  {
-    content: "🐶"; 
+  .custom-list li:nth-child(even):before {
+    // content: "🐶";
+    color: #edc170;
+    content: "\f6d3";
+    font-family: "Font Awesome 6 Free";
   }
 
   .navbar {
@@ -40,18 +44,18 @@ $border-color-dark: #5d4a3a;
 
   footer {
     background: linear-gradient(135deg, $light-dark, $dark) !important;
-    color: $light !important; 
+    color: $light !important;
   }
-  
+
   .bg-light {
     background-color: transparent !important;
   }
-  
+
   .bg-white {
     background-color: $card-bg-dark !important;
   }
-  
-  .button{
+
+  .button {
     background: $body-color-dark;
     color: $dark-dark;
   }
@@ -59,17 +63,17 @@ $border-color-dark: #5d4a3a;
     .accordion-item {
       background-color: $card-bg-dark;
       border-color: $border-color-dark;
-      
+
       .accordion-button {
         background-color: $card-bg-dark;
         color: $body-color-dark;
-        
+
         &:not(.collapsed) {
           background-color: $primary-dark;
           color: $dark-dark;
         }
       }
-      
+
       .accordion-body {
         background-color: lighten($card-bg-dark, 3%);
         color: $body-color-dark;
@@ -79,16 +83,15 @@ $border-color-dark: #5d4a3a;
   }
 }
 
-  .volunteer-card {
-    background-color: $card-bg-dark !important;
-    border: 1px solid $border-color-dark !important;
-    
-    .card-body {
-      background-color: $card-bg-dark;
-      color: $body-color-dark;
-    }
-  }
+.volunteer-card {
+  background-color: $card-bg-dark !important;
+  border: 1px solid $border-color-dark !important;
 
+  .card-body {
+    background-color: $card-bg-dark;
+    color: $body-color-dark;
+  }
+}
 
 .help-section {
   .bg-white {
@@ -97,7 +100,6 @@ $border-color-dark: #5d4a3a;
   }
 }
 
-
 [data-bs-theme="light"] {
   .volunteer-card {
     background: linear-gradient(135deg, #fff, $light) !important;
@@ -105,10 +107,10 @@ $border-color-dark: #5d4a3a;
   }
 
   .card-body {
-    background:  white !important;
+    background: white !important;
 
-     .card-title {
+    .card-title {
       color: $primary !important;
     }
-   }
- }
+  }
+}

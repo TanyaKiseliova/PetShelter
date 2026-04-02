@@ -1,33 +1,30 @@
-import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import logo from '../assets/images/logo/dogLogoWhite.png';
-import { useTheme } from '../contexts/ThemeContext';
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import logo from "../assets/images/logo/dogLogoWhite.png";
+import { useTheme } from "../contexts/ThemeContext";
 
 const Header: React.FC = () => {
-
-
-const { user, logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation(); 
-   const { darkMode, toggleTheme } = useTheme();
+  const location = useLocation();
+  const { darkMode, toggleTheme } = useTheme();
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate("/");
   };
 
   const isActive = (path: string) => location.pathname === path;
   const closeNavbar = () => {
-  const navbarCollapse = document.getElementById('navbarNav');
-  if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-    const bsCollapse = new (window as any).bootstrap.Collapse(navbarCollapse);
-    bsCollapse.hide();
-  }
-};
+    const navbarCollapse = document.getElementById("navbarNav");
+    if (navbarCollapse && navbarCollapse.classList.contains("show")) {
+      const bsCollapse = new (window as any).bootstrap.Collapse(navbarCollapse);
+      bsCollapse.hide();
+    }
+  };
 
-
-const handleAction = () => {
+  const handleAction = () => {
     handleLogout();
     closeNavbar();
   };
@@ -40,7 +37,6 @@ const handleAction = () => {
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
-        
         <Link to="/" className="navbar-brand">
           <img
             src={logo}
@@ -50,17 +46,21 @@ const handleAction = () => {
           />
         </Link>
 
-        <button  className="navbar-toggler"  type="button"  data-bs-toggle="collapse"  data-bs-target="#navbarNav">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
-        
+
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto p-1 ">
-
             <li className="nav-item me-3">
               <button
                 className="btn btn-outline-light"
-                onClick= { handleActionForTheme}
+                onClick={handleActionForTheme}
                 title={darkMode ? "Светлая тема" : "Тёмная тема"}
               >
                 {darkMode ? (
@@ -71,39 +71,65 @@ const handleAction = () => {
               </button>
             </li>
 
-            
             <li className="nav-item text-center">
-              <Link to="/"   className={`nav-link ${isActive('/') ? 'fw-bold text-light ' : ''}`} onClick={closeNavbar}>Главная</Link>
+              <Link
+                to="/"
+                className={`nav-link ${isActive("/") ? "fw-bold text-light " : ""}`}
+                onClick={closeNavbar}
+              >
+                Главная
+              </Link>
             </li>
             <li className="nav-item text-center">
-              <Link to="/about" className={`nav-link ${isActive('/about') ? 'fw-bold text-light ' : ''}`} onClick={closeNavbar}>О нас</Link>
+              <Link
+                to="/about"
+                className={`nav-link ${isActive("/about") ? "fw-bold text-light " : ""}`}
+                onClick={closeNavbar}
+              >
+                О нас
+              </Link>
             </li>
             <li className="nav-item text-center">
-              <Link to="/pets" className={`nav-link ${isActive('/pets') ? 'fw-bold text-light ' : ''}`} onClick={closeNavbar}>Животные</Link>
+              <Link
+                to="/pets"
+                className={`nav-link ${isActive("/pets") ? "fw-bold text-light " : ""}`}
+                onClick={closeNavbar}
+              >
+                Животные
+              </Link>
             </li>
           </ul>
 
-
-          <div className="d-flex align-items-center justify-content-center" >
+          <div className="d-flex align-items-center justify-content-center">
             {user ? (
               <div className="d-flex align-items-center">
                 <span className="text-white me-2"> {user.name}</span>
-                <button onClick={handleAction} className="btn btn-outline-light btn-sm me-2" >
-                   Выйти
+                <button
+                  onClick={handleAction}
+                  className="btn btn-outline-light btn-sm me-2"
+                >
+                  Выйти
                 </button>
               </div>
             ) : (
-               <div className="d-flex gap-2">
-                  <Link to="/register" className="btn btn-outline-light btn-sm me-2" onClick={closeNavbar}>
-                    Регистрация
-                   </Link>
-                    <Link to="/login" className="btn btn-outline-light btn-sm me-2" onClick={closeNavbar}>
-                     Вход
-                   </Link>
-                </div>
-               )}
+              <div className="d-flex gap-2">
+                <Link
+                  to="/register"
+                  className="btn btn-outline-light btn-sm me-2"
+                  onClick={closeNavbar}
+                >
+                  Регистрация
+                </Link>
+                <Link
+                  to="/login"
+                  className="btn btn-outline-light btn-sm me-2"
+                  onClick={closeNavbar}
+                >
+                  Вход
+                </Link>
+              </div>
+            )}
           </div>
-
         </div>
       </div>
     </nav>

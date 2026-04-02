@@ -1,85 +1,101 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState('shelterworker@gmail.com');
-  const [password, setPassword] = useState('worker123');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("shelterworker@gmail.com");
+  const [password, setPassword] = useState("worker123");
+  const [error, setError] = useState("");
   const { login } = useAuth();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     const success = await login(email, password);
     if (success) {
-      navigate('/');
+      navigate("/");
     } else {
-      setError('Неверный email или пароль');
+      setError("Неверный email или пароль");
     }
   };
 
   return (
-     <div className="container py-5 m-3">
-    <div className="row justify-content-center">
-      <div className="col-md-6">
-        <div className="card shadow">
-          <div className="card-header bg-primary text-white">
-            <h3 className="mb-0">Вход</h3>
-          </div>
-          <div className="card-body">
-            {error && (
-              <div className="alert alert-danger" role="alert">
-                {error}
-              </div>
-            )}
-            
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email</label>
-                <input type="email" className="form-control" id="email"
-                 onChange={(e) => setEmail(e.target.value)} required/>
-              </div>
-              
-              <div className="mb-3">
-                <label htmlFor="password" className="form-label">Пароль</label>
-                <div className="position-relative">
-                    <input type={showPassword ? "text" : "password"} className="form-control  pe-5" id="password" 
-                    onChange={(e) => setPassword(e.target.value)} required   
+    <div className="container py-5 m-3">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card shadow">
+            <div className="card-header bg-primary text-white">
+              <h3 className="mb-0">Вход</h3>
+            </div>
+            <div className="card-body">
+              {error && (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">
+                    Пароль
+                  </label>
+                  <div className="position-relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      className="form-control  pe-5"
+                      id="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
                     />
 
                     <button
-                        type="button"
-                        className="btn btn-link position-absolute end-0 top-50 translate-middle-y"
-                        onClick={() => setShowPassword(!showPassword)}
-                        style={{ zIndex: 10 }}
-                        >
-                        {showPassword ? (
-                          <i className="bi bi-eye-slash"></i>
-                        ) : (
-                          <i className="bi bi-eye"></i>
-                        )}
+                      type="button"
+                      className="btn btn-link position-absolute end-0 top-50 translate-middle-y"
+                      onClick={() => setShowPassword(!showPassword)}
+                      style={{ zIndex: 10 }}
+                    >
+                      {showPassword ? (
+                        <i className="bi bi-eye-slash"></i>
+                      ) : (
+                        <i className="bi bi-eye"></i>
+                      )}
                     </button>
-                </div>    
-              </div>
-              
-              <button type="submit" className="btn btn-primary w-100 text-light">
-                Войти
-              </button>
-              
-              <div className="text-center mt-3">
-                <a href="/register" className="text-decoration-none">
-                  Нет аккаунта? Зарегистрироваться
-                </a>
-              </div>
-            </form>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="btn btn-primary w-100 text-light"
+                >
+                  Войти
+                </button>
+
+                <div className="text-center mt-3">
+                  <a href="/register" className="text-decoration-none">
+                    Нет аккаунта? Зарегистрироваться
+                  </a>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

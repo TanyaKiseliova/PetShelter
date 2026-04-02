@@ -11860,10 +11860,14 @@ textarea.form-control-lg {
   }
 }
 [data-bs-theme=dark] .custom-list li:nth-child(odd):before {
-  content: "🐱";
+  color: #e67c22;
+  content: "\f6be";
+  font-family: "Font Awesome 6 Free";
 }
 [data-bs-theme=dark] .custom-list li:nth-child(even):before {
-  content: "🐶";
+  color: #edc170;
+  content: "\f6d3";
+  font-family: "Font Awesome 6 Free";
 }
 [data-bs-theme=dark] .navbar {
   background: linear-gradient(135deg, #3e2723, #e67c22) !important;

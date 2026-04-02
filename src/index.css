@@ -4,8 +4,9 @@
 }
 
 .custom-list li::before {
-  content: "🐾"; 
- color: rgb(0, 0, 0);
+  content: "\f1b0";
+  font-family: "Font Awesome 6 Free";
+  color: rgb(0, 0, 0);
   font-weight: bold;
   margin-right: 10px;
 }
