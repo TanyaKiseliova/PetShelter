@@ -13,15 +13,5 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-console.log('=== Firebase Config Debug ===');
-console.log('apiKey:', process.env.REACT_APP_API_KEY);
-console.log('authDomain:', process.env.REACT_APP_AUTH_DOMAIN);
-console.log('projectId:', process.env.REACT_APP_PROJECT_ID);
-console.log('Все переменные:', process.env); 
-
 export const db = getFirestore(app);
 export const auth = getAuth(app);
-
-console.log('✅ Firebase app created:', app.name);
-console.log('✅ Auth ready:', auth.currentUser);
-
