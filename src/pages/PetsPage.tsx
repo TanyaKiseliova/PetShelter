@@ -9,7 +9,6 @@ import AnimalLoader from "../components/Loading";
 const PetsPage: React.FC = () => {
   const [pets, setPets] = useState<Pet[]>([]);
   const { user } = useAuth();
-  const navigate = useNavigate();
   const [filteredPets, setFilteredPets] = useState<Pet[]>([]);
   const [loading, setLoading] = useState(true);
 
