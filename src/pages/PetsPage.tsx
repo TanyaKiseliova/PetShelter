@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Pet } from "../types";
 import { useAuth } from "../contexts/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { db } from "../lib/firebase";
 import { collection, getDocs, query } from "firebase/firestore";
 import AnimalLoader from "../components/Loading";
